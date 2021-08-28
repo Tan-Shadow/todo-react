@@ -1,9 +1,21 @@
 const Todo = (props) => {
-    return (
-      <div style={{ cursor : "pointer" }} onClick={props.toggleComplete} className="todo d-flex justify-content-center mt-4 border p-3">
-       {props.todo.text}
-      </div>
-    )
-}
+  return (
+    <div
+      style={{
+        cursor: "pointer",
+        textDecoration: props.todo.completed ? "line-through" : "",
+      }}
+      // key={props.todo.id}
+      onClick={props.toggleComplete}
+      className="todo d-flex justify-content-around mt-4 border p-3"
+    >
+      {props.todo.text}
 
-export default Todo 
+      <button onClick={props.onDelete}>
+        <i className="fa fa-trash"></i>
+      </button>
+    </div>
+  );
+};
+
+export default Todo;
