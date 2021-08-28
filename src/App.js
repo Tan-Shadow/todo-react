@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import TodoForm from "./components/TodoForm";
 import Todo from "./components/Todo";
+import Logo from "./components/Logo";
 
 function App() {
   let [todos, settodos] = useState([]);
@@ -57,7 +58,8 @@ function App() {
   }
 
   return (
-    <div className=" pt-5 d-flex align-items-center flex-column bg-dark vh-100 text-light">
+    <div className=" pt-2 d-flex align-items-center flex-column bg-dark vh-100 text-light">
+      <Logo />
       <TodoForm onSubmit={addTodo} />
       <div className="mt-4 w-25">
         {filterdTodos.map((todo, i) => (
@@ -90,11 +92,13 @@ function App() {
           <button onClick={deleteAllComplete}>delete all completed</button>
         ) : null}
       </div>
-      <div>
-        <button onClick={handleToggleAllComplete}>
-          Toggle all complete: {`${toggleAllComplete}`}
-        </button>
-      </div>
+      {todos.length ? (
+        <div>
+          <button onClick={handleToggleAllComplete}>
+            Toggle all complete: {`${toggleAllComplete}`}
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }
